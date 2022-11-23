@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addTodo } from './store/todoSlice';
+import { addTodo, fetchTodos } from './store/todoSlice';
 
 import './App.css'
 import InputField from './components/InputField';
@@ -16,6 +16,10 @@ function App() {
     dispatch(addTodo({text}))
     setText('')
   }
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch])
   
   return (
     <div className='App'>
